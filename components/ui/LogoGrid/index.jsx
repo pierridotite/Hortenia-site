@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import IAM from '../../../public/logos/IAM.png'
+import IAM from '../../../public/logos/iam.png'
 import IAMincu from '../../../public/logos/IAMincu.jpg'
-import INRAE from '../../../public/logos/INRAE.png'
+import INRAE from '../../../public/logos/inrae.png'
 
 const logos = [
     {
