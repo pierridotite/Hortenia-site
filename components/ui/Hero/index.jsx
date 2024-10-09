@@ -41,23 +41,28 @@ const Hero = () => {
     }, []);
 
     // Gestionnaire de soumission du formulaire
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Empêche la soumission par défaut du formulaire
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const form = e.target;
-        const data = new FormData(form);
+        const formData = new FormData(form);
 
-        // Envoie des données via Fetch pour Netlify Forms
-        fetch("/", {
-            method: "POST",
-            body: data,
-        })
-        .then(() => {
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: formData.get('email'),
+            }),
+        });
+
+        if (response.ok) {
             setIsSubmitted(true); // Affiche le message de remerciement après soumission
             form.reset(); // Réinitialise le formulaire
-            // Cache la notification après 5 secondes
             setTimeout(() => setIsSubmitted(false), 5000);
-        })
-        .catch((error) => alert(error));
+        } else {
+            alert('Erreur lors de la soumission du formulaire');
+        }
     };
 
     return (
