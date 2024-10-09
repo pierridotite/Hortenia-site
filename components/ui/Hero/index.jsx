@@ -73,8 +73,8 @@ const Hero = () => {
 
                     {/* Formulaire avec gestionnaire de soumission */}
                     <form 
-                        method="POST" 
                         name="email-signup" 
+                        method="POST" 
                         data-netlify="true" 
                         netlify-honeypot="bot-field"
                         onSubmit={handleSubmit} // Ajout du gestionnaire de soumission
@@ -84,19 +84,23 @@ const Hero = () => {
                         <p className="hidden">
                             <label>Ne pas remplir : <input name="bot-field" /></label>
                         </p>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Entre ton adresse email"
-                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600"
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="text-white bg-green-600 hover:bg-green-800 active:bg-gray-900 px-4 py-2 rounded-md"
-                        >
-                            Rejoindre la bêta
-                        </button>
+                        <p>
+                            <label>Email <input
+                                type="email"
+                                name="email"
+                                placeholder="Entre ton adresse email"
+                                className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600"
+                                required
+                            /></label>
+                        </p>
+                        <p>
+                            <button
+                                type="submit"
+                                className="text-white bg-green-600 hover:bg-green-800 active:bg-gray-900 px-4 py-2 rounded-md"
+                            >
+                                Rejoindre la bêta
+                            </button>
+                        </p>
                     </form>
 
                     {/* Notification de remerciement */}
