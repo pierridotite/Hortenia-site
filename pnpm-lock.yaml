@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@netlify/plugin-nextjs':
+    specifier: ^5.7.4
+    version: 5.7.4
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.47)
@@ -150,6 +153,11 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
+
+  /@netlify/plugin-nextjs@5.7.4:
+    resolution: {integrity: sha512-kOvZ/vn94r2kRXpwppeR610mRSJFbkVakvUoHwtJQczPUR0el9QfVwYNl+6CHMRQSGc94FNs/pT9R32uyWwUmQ==}
+    engines: {node: '>=18.0.0'}
+    dev: false
 
   /@next/env@14.2.15:
     resolution: {integrity: sha512-S1qaj25Wru2dUpcIZMjxeMVSwkt8BK4dmWHHiBuRstcIyOsMapqT4A4jSB6onvqeygkSSmOkyny9VVx8JIGamQ==}
