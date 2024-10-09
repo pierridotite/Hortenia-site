@@ -23,11 +23,11 @@ const logos = [
 
 const Hero = () => {
     const [heroHeight, setHeroHeight] = useState('100vh');
-    const [isSubmitted, setIsSubmitted] = useState(false); // État pour gérer l'affichage de la notification
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const words = ["Transformez", "Améliorez", "Découvrez", "Partagez"];
 
     useEffect(() => {
-        const navbarHeight = 80; // Hauteur de la barre de navigation
+        const navbarHeight = 80; 
         const handleResize = () => {
             setHeroHeight(`calc(100vh - ${navbarHeight}px)`);
         };
@@ -40,6 +40,25 @@ const Hero = () => {
         };
     }, []);
 
+    // Gestionnaire de soumission du formulaire
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+        await fetch('/__forms.html', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData).toString(),
+        });
+
+        setIsSubmitted(true); // Affiche le message de remerciement après soumission
+        form.reset(); // Réinitialise le formulaire
+        setTimeout(() => setIsSubmitted(false), 5000);
+    };
+
     return (
         <section style={{ height: heroHeight }} className="flex flex-col justify-center">
             <div className="custom-screen text-gray-600">
@@ -48,23 +67,14 @@ const Hero = () => {
                         <FlipWords words={words} /> votre jardin avec <span className="text-green-600">Hortenia</span>
                     </h1>
                     <p className="max-w-xl mx-auto pb-14">
-                        Rejoignez notre bêta exclusive pour tester notre application en avant première.
+                        Rejoignez notre bêta exclusive pour tester notre application en avant-première.
                     </p>
 
-                    {/* Formulaire sans gestionnaire JavaScript */}
-                    <form 
-                        name="email-signup" 
-                        method="POST" 
-                        data-netlify="true" 
-                        netlify-honeypot="bot-field"  // Protection contre les bots
-                        className="flex items-center justify-center gap-x-3 font-medium text-sm mt-8"
-                    >
+                    {/* Formulaire avec gestionnaire de soumission */}
+                    <form name="email-signup" onSubmit={handleSubmit} className="flex items-center justify-center gap-x-3 font-medium text-sm mt-8">
                         <input type="hidden" name="form-name" value="email-signup" />
-                        <p className="hidden">
-                            <label>Ne pas remplir : <input name="bot-field" /></label>
-                        </p>
                         <p>
-                            <label>Email <input
+                            <label><input
                                 type="email"
                                 name="email"
                                 placeholder="Entre ton adresse email"
