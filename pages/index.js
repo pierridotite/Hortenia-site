@@ -1,23 +1,31 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+import Head from "next/head";
+import GradientWrapper from "../components/GradientWrapper";
+import CTA from "../components/ui/CTA";
+import Features from "../components/ui/Features";
+import FooterCTA from "../components/ui/FooterCTA";
+import Hero from "../components/ui/Hero";
+import LogoGrid from "../components/ui/LogoGrid";
+import Testimonials from "../components/ui/Testimonials";
+import ToolKit from "../components/ui/ToolKit";
 
 export default function Home() {
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='robots' content='index' />
       </Head>
-
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/eee.js</code>
-        </p>
-      </main>
-
-      <Footer />
-    </div>
-  )
+      <Hero />
+      <LogoGrid />
+      <GradientWrapper>
+        <Features />
+        <CTA />
+      </GradientWrapper>
+      <ToolKit />
+      <GradientWrapper>
+        <Testimonials />
+      </GradientWrapper>
+      <FooterCTA />
+    </>
+  );
 }
+
