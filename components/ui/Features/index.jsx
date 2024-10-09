@@ -1,5 +1,8 @@
+import React from "react";
 import SectionWrapper from "../../SectionWrapper"
 import { AiOutlineClockCircle, AiOutlinePicture, AiOutlineInfoCircle } from "react-icons/ai"; // Import des icônes de react-icons
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const Features = () => {
 
@@ -21,13 +24,47 @@ const Features = () => {
         }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0, x: -50 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0 }
+    };
+
+    const controls = useAnimation();
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1
+    });
+
+    React.useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [controls, inView]);
+
     return (
         <SectionWrapper>
             <div id="features" className="custom-screen text-gray-600">
-                <ul className="grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+                <motion.ul
+                    ref={ref}
+                    className="grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
+                    initial="hidden"
+                    animate={controls}
+                    variants={containerVariants}
+                >
                     {
                         features.map((item, idx) => (
-                            <li key={idx} className="space-y-3">
+                            <motion.li key={idx} className="space-y-3" variants={itemVariants}>
                                 <div className="w-12 h-12 border text-green-400 rounded-full flex items-center justify-center">
                                     {item.icon}
                                 </div>
@@ -37,10 +74,10 @@ const Features = () => {
                                 <p>
                                     {item.desc}
                                 </p>
-                            </li>
+                            </motion.li>
                         ))
                     }
-                </ul>
+                </motion.ul>
             </div>
         </SectionWrapper>
     )

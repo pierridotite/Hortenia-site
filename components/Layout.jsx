@@ -6,10 +6,10 @@ const Layout = ({ children }) => {
     return (
         <>
             <Head>
-                <title>Blinder</title>
-                <meta name='description' content='Blinder making it simple for you to build and grow your SaaS applications, or any business idea' />
+                <title>Hortenia</title>
+                <meta name='description' content='Hortenia, votre jardin dans votre poche !' />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
+                <link rel='icon' href='/images/Feuille.png' />
             </Head>
             <Navbar />
             <main>{children}</main>

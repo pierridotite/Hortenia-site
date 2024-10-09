@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaClock, FaCube, FaUsers } from 'react-icons/fa';
 import SectionWrapper from '../../SectionWrapper';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const BetaBenefits = () => {
     const benefits = [
@@ -21,6 +23,34 @@ const BetaBenefits = () => {
         },
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+    };
+
+    const controls = useAnimation();
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1
+    });
+
+    React.useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [controls, inView]);
+
     return (
         <SectionWrapper>
             <div id="beta-benefits" className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
@@ -28,26 +58,33 @@ const BetaBenefits = () => {
                     <h2 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
                         Pourquoi rejoindre la bêta ?
                     </h2>
-                    <p>Découvrez les avantages exclusifs pour nos bêta-testeurs :</p>
                 </div>
-                <div className="mt-12">
-                    <ul className="grid gap-y-8 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
-                        {benefits.map((item, idx) => (
-                            <li key={idx} className="flex gap-x-4">
-                                <div className="flex-none w-12 h-12 gradient-border rounded-full flex items-center justify-center">
+                <motion.ul
+                    ref={ref}
+                    className="grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 mt-8"
+                    initial="hidden"
+                    animate={controls}
+                    variants={containerVariants}
+                >
+                    {
+                        benefits.map((item, idx) => (
+                            <motion.li key={idx} className="space-y-3" variants={itemVariants}>
+                                <div className="w-12 h-12 border text-black-400 rounded-full flex items-center justify-center">
                                     {item.icon}
                                 </div>
-                                <div>
-                                    <h4 className="text-lg text-gray-800 font-semibold">{item.title}</h4>
-                                    <p className="mt-3">{item.desc}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                                <h4 className="text-lg text-gray-800 font-semibold">
+                                    {item.title}
+                                </h4>
+                                <p>
+                                    {item.desc}
+                                </p>
+                            </motion.li>
+                        ))
+                    }
+                </motion.ul>
             </div>
         </SectionWrapper>
-    );
-};
+    )
+}
 
 export default BetaBenefits;
