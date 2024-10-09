@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.7.4",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "eslint-config-next": "13.1.1",
