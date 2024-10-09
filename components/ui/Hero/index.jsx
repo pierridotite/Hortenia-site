@@ -40,31 +40,6 @@ const Hero = () => {
         };
     }, []);
 
-    // Gestionnaire de soumission du formulaire
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-
-        const response = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: formData.get('email'),
-            }),
-        });
-
-        if (response.ok) {
-            setIsSubmitted(true); // Affiche le message de remerciement après soumission
-            form.reset(); // Réinitialise le formulaire
-            setTimeout(() => setIsSubmitted(false), 5000);
-        } else {
-            alert('Erreur lors de la soumission du formulaire');
-        }
-    };
-
     return (
         <section style={{ height: heroHeight }} className="flex flex-col justify-center">
             <div className="custom-screen text-gray-600">
@@ -76,13 +51,12 @@ const Hero = () => {
                         Rejoignez notre bêta exclusive pour tester notre application en avant première.
                     </p>
 
-                    {/* Formulaire avec gestionnaire de soumission */}
+                    {/* Formulaire sans gestionnaire JavaScript */}
                     <form 
                         name="email-signup" 
                         method="POST" 
                         data-netlify="true" 
-                        netlify-honeypot="bot-field"
-                        onSubmit={handleSubmit} // Ajout du gestionnaire de soumission
+                        netlify-honeypot="bot-field"  // Protection contre les bots
                         className="flex items-center justify-center gap-x-3 font-medium text-sm mt-8"
                     >
                         <input type="hidden" name="form-name" value="email-signup" />
