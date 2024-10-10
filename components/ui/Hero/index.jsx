@@ -3,6 +3,7 @@ import Image from 'next/image';
 import IAM from '../../../public/logos/iam.png';
 import IAMincu from '../../../public/logos/IAMincu.jpg';
 import INRAE from '../../../public/logos/inrae.png';
+import Agrosys from '../../../public/logos/agrosys.png';
 import React from "react";
 import { FlipWords } from "../flip-words";
 
@@ -18,6 +19,10 @@ const logos = [
     {
         src: INRAE,
         alt: "INRAE"
+    },
+    {
+        src: Agrosys,
+        alt: "Agrosys"
     },
 ];
 
