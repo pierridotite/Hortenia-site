@@ -2,6 +2,7 @@ import Image from 'next/image'
 import IAM from '../../../public/logos/iam.png'
 import IAMincu from '../../../public/logos/IAMincu.jpg'
 import INRAE from '../../../public/logos/inrae.png'
+import AgroSYS from '../../../public/logos/agrosys.png'
 
 const logos = [
     {
@@ -15,6 +16,10 @@ const logos = [
     {
         src: INRAE,
         alt: "INRAE"
+    },
+    {
+        src: AgroSYS,
+        alt: "AgroSYS"
     },
 ]
 
