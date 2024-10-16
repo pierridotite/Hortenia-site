@@ -71,7 +71,7 @@ const Features = () => {
                                 <h4 className="text-lg text-gray-800 font-semibold">
                                     {item.title}
                                 </h4>
-                                <p>
+                                <p className="text-justify">
                                     {item.desc}
                                 </p>
                             </motion.li>

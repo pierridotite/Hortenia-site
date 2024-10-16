@@ -33,7 +33,7 @@ const CTA = () => {
                         </h2>
                         <motion.p
                             ref={ref}
-                            className="mt-3 text-gray-600"
+                            className="mt-3 text-gray-600 text-justify"
                             initial="hidden"
                             animate={controls}
                             variants={{

@@ -45,7 +45,7 @@ const Testimonials = () => {
                                             </div>
                                         </div>
                                         <blockquote>
-                                            <p className="mt-6 text-gray-700">
+                                            <p className="mt-6 text-gray-700 text-justify">
                                                 {item.quote}
                                             </p>
                                         </blockquote>
