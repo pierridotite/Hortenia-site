@@ -1,8 +1,14 @@
-import Head from "next/head"
-import Footer from "./ui/Footer"
-import Navbar from "./ui/Navbar"
+import { useRouter } from "next/router";
+import Head from "next/head";
+import Footer from "./ui/Footer";
+import Navbar from "./ui/Navbar";
 
 const Layout = ({ children }) => {
+    const router = useRouter();
+
+    // Routes où la navbar et le footer doivent être masqués
+    const hideNavbarRoutes = ['/admin/dashboard', '/admin/login'];
+
     return (
         <>
             <Head>
@@ -11,11 +17,16 @@ const Layout = ({ children }) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/images/Feuille.png' />
             </Head>
-            <Navbar />
+            
+            {/* Condition pour afficher ou masquer la Navbar et le Footer */}
+            {!hideNavbarRoutes.includes(router.pathname) && <Navbar />}
+            
             <main>{children}</main>
-            <Footer />
+            
+            {/* Masquer le footer également si nécessaire */}
+            {!hideNavbarRoutes.includes(router.pathname) && <Footer />}
         </>
-    )
+    );
 }
 
-export default Layout
+export default Layout;

@@ -1,0 +1,40 @@
+{
+  "_id": {
+    "$oid": "65d8ab1d90c1e77bbca288ad"
+  },
+  "Nom": "Carotte",
+  "Nom_scientifique": "Daucus carota",
+  "Type": "Annuel",
+  "Difficultee": 60,
+  "Besoin_eau": 50,
+  "Lumiere": 80,
+  "Sol": "Sableux",
+  "Quantitee": 20,
+  "Rusticite": 2,
+  "pH": "6-7",
+  "profondeur": "20",
+  "gel": false,
+  "compagnon_pos": "Pois, Laitue, Oignon, Romarin",
+  "compagnon_neg": "Aneth, Panais",
+  "consommable": "Les parties consommables de la carotte sont principalement la racine, qui est riche en vitamines, minéraux et fibres. Les feuilles vertes de la carotte peuvent aussi être consommées, généralement utilisées comme herbes aromatiques ou ajoutées dans les salades pour leur goût distinctif.",
+  
+  "maladies": "Pour protéger les carottes des nuisibles comme la mouche de la carotte, l'oïdium, les limaces, et les nématodes, pratiquez l'association de cultures (par exemple avec le romarin et l'oignon), utilisez des fongicides adaptés, et maintenez un environnement propre. La rotation des cultures et la solarisation du sol sont également des méthodes préventives efficaces.",
+  "conseils": "Rotation des cultures ; Éviter de planter des carottes au même endroit chaque année pour réduire les risques de maladies et de nuisibles. Pratiquer une rotation de cultures d'au moins 3 ans.",
+  "varietes": "Nantes: Courte et cylindrique, avec une chair tendre et sucrée. Parfaite pour une consommation fraîche et la cuisine.\n\nChantenay: Trapue et conique, résistante et offrant une excellente saveur. Idéale pour les sols lourds et la conservation.\n\nImperator: Longue et droite, avec une pointe effilée. Appréciée pour sa belle apparence et sa texture croquante, parfaite pour les salades et la consommation fraîche.",
+  "liens": [
+    "https://www.jardiner-malin.fr",
+    "https://www.rustica.fr",
+    "https://www.jardin-et-potager.fr"
+  ],
+  "photo1": "Nantes.jpg",
+  "photo2": "Chantenay.jpg",
+  "photo3": "Imperator.jpg",
+  "name_liens": [
+    "Jardin malin",
+    "Rustica",
+    "Jardin et potager"
+  ],
+  "isometric_img": "Carotte_isometric.png",
+  "isometric_Id": 1,
+  "isometric_color": "#FFA500"
+}
