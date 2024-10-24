@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Brand from '../Brand'
-import NavLink from '../NavLink'
 
 const Navbar = () => {
 
@@ -20,9 +19,17 @@ const Navbar = () => {
             document.body.classList.remove("overflow-hidden")
             setState(false)
         }
-        events.on("routeChangeStart", () => handleState());
-        events.on("hashChangeStart", () => handleState());
-    }, [])
+
+        // Ajouter les gestionnaires d'événements
+        events.on("routeChangeStart", handleState);
+        events.on("hashChangeStart", handleState);
+
+        // Nettoyage des événements lorsque le composant est démonté
+        return () => {
+            events.off("routeChangeStart", handleState);
+            events.off("hashChangeStart", handleState);
+        };
+    }, [events]);  // Ajout de `events` comme dépendance
 
     const handleNavMenu = () => {
         setState(!state)
@@ -31,7 +38,7 @@ const Navbar = () => {
 
     return (
         <header>
-                <nav className={`bg-white shadow-md rounded-lg max-w-screen-lg mx-auto mt-4 ${state ? "h-full" : ""} mx-6`}>
+            <nav className={`bg-white shadow-md rounded-lg max-w-screen-lg mx-auto mt-4 ${state ? "h-full" : ""} mx-6`}>
                 <div className="custom-screen items-center mx-auto md:flex">
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Brand />
@@ -56,18 +63,13 @@ const Navbar = () => {
                     <div className={`flex-1 pb-3 mt-8 md:pb-0 md:mt-0 md:block ${state ? "" : "hidden"}`}>
                         <ul className="text-gray-700 justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0 md:text-gray-600 md:font-medium">
                             {
-                                navigation.map((item, idx) => {
-                                    return (
-                                        <li key={idx} className="duration-150 hover:text-gray-900">
-                                            <Link
-                                                href={item.path}
-                                                className="block"
-                                            >
-                                                {item.title}
-                                            </Link>
-                                        </li>
-                                    )
-                                })
+                                navigation.map((item, idx) => (
+                                    <li key={idx} className="duration-150 hover:text-gray-900">
+                                        <Link href={item.path} className="block">
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                ))
                             }
                         </ul>
                     </div>
@@ -77,4 +79,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;
