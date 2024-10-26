@@ -5,7 +5,7 @@ import axiosInstance from '../../lib/axiosInstance';
 import PlantList from '../../components/admin/PlantList';
 import ActionList from '../../components/admin/ActionList';
 import TimelineList from '../../components/admin/TimelineList';
-import { FaSpinner, FaLeaf, FaTasks, FaClock, FaSignOutAlt } from 'react-icons/fa';
+import { FaSpinner, FaLeaf, FaTasks, FaClock, FaSignOutAlt, FaChartBar } from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const [plants, setPlants] = useState([]);
@@ -28,10 +28,6 @@ const AdminDashboard = () => {
         setPlants(plantsRes.data);
         setActions(actionsRes.data);
         setTimelines(timelinesRes.data);
-
-        console.log('Plantes:', plantsRes.data);
-        console.log('Actions:', actionsRes.data);
-        console.log('Timelines:', timelinesRes.data);
 
         setLoading(false);
       } catch (err) {
@@ -118,6 +114,17 @@ const AdminDashboard = () => {
             <FaClock className="mr-2" />
             Timelines
           </button>
+          <button
+            className={`flex items-center px-4 py-2 rounded-md focus:outline-none transition duration-200 ${
+              activeTab === 'mixpanel'
+                ? 'bg-green-600 text-white'
+                : 'bg-white text-green-700 hover:bg-green-100 shadow'
+            }`}
+            onClick={() => setActiveTab('mixpanel')}
+          >
+            <FaChartBar className="mr-2" />
+            Statistiques Application
+          </button>
         </div>
 
         {/* Contenu des Onglets */}
@@ -125,6 +132,16 @@ const AdminDashboard = () => {
           {activeTab === 'plants' && <PlantList plants={plants} setPlants={setPlants} />}
           {activeTab === 'actions' && <ActionList actions={actions} setActions={setActions} />}
           {activeTab === 'timelines' && <TimelineList timelines={timelines} setTimelines={setTimelines} />}
+          {activeTab === 'mixpanel' && (
+            <iframe
+              src="https://eu.mixpanel.com/p/BWGJfAA55QYPW9c4s3pEgb"
+              width="100%"
+              height="600px"
+              frameBorder="0"
+              allowFullScreen
+              title="Mixpanel Report"
+            ></iframe>
+          )}
         </div>
       </main>
     </div>
