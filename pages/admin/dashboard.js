@@ -5,7 +5,8 @@ import axiosInstance from '../../lib/axiosInstance';
 import PlantList from '../../components/admin/PlantList';
 import ActionList from '../../components/admin/ActionList';
 import TimelineList from '../../components/admin/TimelineList';
-import { FaSpinner, FaLeaf, FaTasks, FaClock, FaSignOutAlt, FaChartBar } from 'react-icons/fa';
+import SendNotifications from '../../components/admin/SendNotifications';
+import { FaSpinner, FaLeaf, FaTasks, FaClock, FaSignOutAlt, FaChartBar, FaBell } from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const [plants, setPlants] = useState([]);
@@ -125,6 +126,17 @@ const AdminDashboard = () => {
             <FaChartBar className="mr-2" />
             Statistiques Application
           </button>
+          <button
+            className={`flex items-center px-4 py-2 rounded-md focus:outline-none transition duration-200 ${
+              activeTab === 'notifications'
+                ? 'bg-green-600 text-white'
+                : 'bg-white text-green-700 hover:bg-green-100 shadow'
+            }`}
+            onClick={() => setActiveTab('notifications')}
+          >
+            <FaBell className="mr-2" />
+            Envoyer Notifications
+          </button>
         </div>
 
         {/* Contenu des Onglets */}
@@ -142,6 +154,7 @@ const AdminDashboard = () => {
               title="Mixpanel Report"
             ></iframe>
           )}
+          {activeTab === 'notifications' && <SendNotifications />}
         </div>
       </main>
     </div>
