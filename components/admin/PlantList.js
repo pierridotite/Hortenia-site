@@ -507,7 +507,7 @@ const PlantList = ({ plants, setPlants }) => {
               placeholder="Profondeur"
             />
           </div>
-          <div>
+          <div> 
             <label className="block mb-2 font-medium">Date de Semis</label>
              <DatePicker
                 selected={parseDateFromDayMonth(form.date_semis)}
@@ -515,7 +515,7 @@ const PlantList = ({ plants, setPlants }) => {
                 dateFormat="dd/MM" // Format d'affichage de la date (JJ/MM)
                 showMonthDropdown // Affiche un sélecteur de mois
                 showYearDropdown={false} // Retire le sélecteur d'années
-                className="w-full border border-gray-300 rounded-md p-2"
+                className="w-full border border-gray-300 rounded-md p-2" //tes
                 placeholderText="JJ/MM"
               />
           </div>
