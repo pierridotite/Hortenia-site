@@ -1,7 +1,8 @@
 // components/admin/PlantList.js
 import React, { useState } from 'react';
 import axiosInstance from '../../lib/axiosInstance'; // Assurez-vous que le chemin est correct
-import { date } from 'yup';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PlantList = ({ plants, setPlants }) => {
   const [editingPlant, setEditingPlant] = useState(null);
@@ -64,6 +65,22 @@ const PlantList = ({ plants, setPlants }) => {
         alert('Erreur lors du téléchargement de l\'image.');
       }
     }
+  };
+
+  const handleDateChange = (date) => {
+    // Convertir la date en format JJ/MM dès que l'utilisateur sélectionne une date
+    const formattedDate = formatDateToDayMonth(date);
+    setForm({ ...form, date_semis: formattedDate });
+  };
+
+  // Fonction pour formater la date en JJ/MM
+  const formatDateToDayMonth = (date) => {
+    if (date) {
+      const day = date.getDate().toString().padStart(2, '0'); // Jour sur deux chiffres
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mois sur deux chiffres
+      return `${day}/${month}`;
+    }
+    return '';
   };
 
   const handleEdit = (plant) => {
@@ -300,6 +317,22 @@ const PlantList = ({ plants, setPlants }) => {
     });
   };
 
+  const parseDateFromDayMonth = (dateString) => {
+    if (!dateString) {
+      return null;
+    }
+
+    const [day, month] = dateString.split('/');
+
+    if (!day || !month) {
+      return null;
+    }
+
+    // Création d'une nouvelle date avec une année de référence, ici 2000
+    const parsedDate = new Date(2000, parseInt(month, 10) - 1, parseInt(day, 10));
+    return isNaN(parsedDate) ? null : parsedDate;
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">Fiches de Plantes</h2>
@@ -476,13 +509,15 @@ const PlantList = ({ plants, setPlants }) => {
           </div>
           <div>
             <label className="block mb-2 font-medium">Date de Semis</label>
-            <input
-              type="date"
-              value={form.date_semis}
-              onChange={(e) => setForm({ ...form, date_semis: e.target.value })}
-              className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="Date de Semis"
-            />
+             <DatePicker
+                selected={parseDateFromDayMonth(form.date_semis)}
+                onChange={(date) => handleDateChange(date)}
+                dateFormat="dd/MM" // Format d'affichage de la date (JJ/MM)
+                showMonthDropdown // Affiche un sélecteur de mois
+                showYearDropdown={false} // Retire le sélecteur d'années
+                className="w-full border border-gray-300 rounded-md p-2"
+                placeholderText="JJ/MM"
+              />
           </div>
           <div className="flex items-center">
             <input
