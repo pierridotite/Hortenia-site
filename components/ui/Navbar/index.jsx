@@ -9,9 +9,9 @@ const Navbar = () => {
     const { events } = useRouter();
 
     const navigation = [
-        { title: "Qualités", path: "#features" },
-        { title: "Pourquoi rejoindre la bêta ?", path: "#toolkit" },
-        { title: "Notre équipe", path: "#testimonials" },
+        { title: "Qualités", path: "/#features" },
+        { title: "Pourquoi rejoindre la bêta ?", path: "/#toolkit" },
+        { title: "Notre équipe", path: "/#testimonials" },
     ]
 
     useEffect(() => {
