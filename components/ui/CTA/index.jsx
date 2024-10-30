@@ -1,6 +1,6 @@
 import SectionWrapper from "../../SectionWrapper"
 import NavLink from "../NavLink"
-import ctaImage from "../../../public/images/garden.jpg"
+import ctaImage from "../../../public/images/isometric_présentation.png"
 import Image from "next/image"
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -25,7 +25,11 @@ const CTA = () => {
             <div className="custom-screen">
                 <div className="items-center gap-x-12 lg:flex">
                     <div className="flex-1 sm:hidden lg:block">
-                        <Image src={ctaImage} className="rounded-lg md:max-w-lg" alt="Plantation Hortenia" />
+                        <Image 
+                            src={ctaImage} 
+                            className="rounded-lg w-3/4 md:max-w-md" // Réduction de la taille de l'image
+                            alt="Plantation Hortenia" 
+                        />
                     </div>
                     <div className="max-w-xl mt-6 md:mt-0 lg:max-w-2xl">
                         <h2 className="text-gray-800 text-3xl font-semibold sm:text-4xl">

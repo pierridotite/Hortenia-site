@@ -31,6 +31,10 @@ const legalLinks = [
         href: "/terms",
         label: "Conditions Générales d'Utilisation (CGU)"
     },
+    {
+        href: "/contact",
+        label: "Contact"
+    },
 ];
 
 const Footer = () => (

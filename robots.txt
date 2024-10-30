@@ -1,0 +1,6 @@
+# Autorise tous les moteurs de recherche à explorer tout le site
+User-agent: *
+Disallow:
+
+# Lien vers le fichier sitemap XML pour aider à l'indexation
+Sitemap: https://hortenia.com/sitemap.xml
